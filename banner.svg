@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 75 1200 350" width="1200" height="350">
+  <title>RVLION</title>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="75%">
+      <stop offset="0" stop-color="#14233f"/>
+      <stop offset=".55" stop-color="#0b1629"/>
+      <stop offset="1" stop-color="#050b16"/>
+    </radialGradient>
+
+    <linearGradient id="plat" gradientUnits="userSpaceOnUse" x1="150" y1="170" x2="1050" y2="330">
+      <stop offset="0" stop-color="#7f8a99"/>
+      <stop offset=".2" stop-color="#e6ebf1"/>
+      <stop offset=".4" stop-color="#a7b0bd"/>
+      <stop offset=".62" stop-color="#f8fafc"/>
+      <stop offset=".82" stop-color="#bcc4cf"/>
+      <stop offset="1" stop-color="#76808e"/>
+    </linearGradient>
+
+    <linearGradient id="sheen" gradientUnits="userSpaceOnUse" x1="-420" y1="150" x2="-160" y2="350">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#f5f9ff" stop-opacity=".95"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+      <animateTransform attributeName="gradientTransform" type="translate"
+        values="0 0;1750 0;1750 0" keyTimes="0;.32;1" calcMode="spline"
+        keySplines=".45 0 .25 1;0 0 1 1" dur="7s" begin="4.4s" repeatCount="indefinite"/>
+    </linearGradient>
+
+    <!-- left-to-right reveal of the solid letterforms -->
+    <linearGradient id="wipeG" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff"/>
+      <stop offset=".86" stop-color="#fff"/>
+      <stop offset="1" stop-color="#000"/>
+    </linearGradient>
+    <mask id="wipe" maskUnits="userSpaceOnUse" x="0" y="75" width="1200" height="350">
+      <rect x="-1700" y="75" width="1700" height="350" fill="url(#wipeG)">
+        <animate attributeName="x" from="-1700" to="0" dur="2.2s" begin="1.5s" fill="freeze"
+          calcMode="spline" keyTimes="0;1" keySplines=".6 0 .25 1"/>
+      </rect>
+    </mask>
+
+    <filter id="glow" x="-10%" y="-60%" width="120%" height="220%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+
+    <style>
+      @keyframes draw    { to { stroke-dashoffset: 0; } }
+      @keyframes settle  { to { opacity: .45; } }
+      @keyframes glowIn  { to { opacity: .3; } }
+      @keyframes breathe { 0%,100% { opacity: .3; } 50% { opacity: .55; } }
+
+      .line { animation: settle 1.2s ease 3.6s forwards; }
+      .line path { fill: none; stroke: #d3dbe5; stroke-width: 1; stroke-linejoin: round;
+                    stroke-dasharray: 1 1; stroke-dashoffset: 1;
+                    animation: draw 1.6s cubic-bezier(.65,0,.35,1) forwards; }
+      .solid path { fill: url(#plat); }
+      .sheen { opacity: .75; }
+      .sheen path { fill: url(#sheen); }
+      .glow { opacity: 0; animation: glowIn 1.6s ease 3.2s forwards, breathe 6s ease-in-out 4.8s infinite; }
+      .glow path { fill: #b8c7dc; }
+
+      .line .g0 { animation-delay: .15s; } .line .g1 { animation-delay: .30s; } .line .g2 { animation-delay: .45s; }
+      .line .g3 { animation-delay: .60s; } .line .g4 { animation-delay: .75s; } .line .g5 { animation-delay: .90s; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .line path { animation: none; stroke-dashoffset: 0; }
+        .line { animation: none; opacity: .45; }
+        .glow { animation: none; opacity: .3; }
+      }
+    </style>
+  </defs>
+
+  <rect x="0" y="75" width="1200" height="350" fill="url(#bg)"/>
+
+  <g filter="url(#glow)">
+    <g class="glow">
+      <path class="g0" d="M168 180H190V320H168Z M154 180H204V182.5H154Z M154 317.5H204V320H154Z M190 180H228C262 180 278 196 278 217C278 238 262 254 228 254H190V251.5H225C245 251.5 255 236 255 217C255 198 245 182.5 225 182.5H190Z M214 254H236C252 290 262 312 290 318C300 320 306 318 312 313L314 315.5C306 322 296 324.5 286 323.5C256 320 238 300 214 254Z"/>
+      <path class="g1" d="M323 180H347L394 309L389 322Z M389 322L451 180H454L391.5 322Z M310 180H360V182.5H310Z M436 180H468V182.5H436Z"/>
+      <path class="g2" d="M508 180H530V320H508Z M494 180H544V182.5H494Z M494 317.5H601V320H494Z M568 320C586 315.5 595 303 597.5 283H601V320Z"/>
+      <path class="g3" d="M654 180H676V320H654Z M640 180H690V182.5H640Z M640 317.5H690V320H640Z"/>
+      <path class="g4" d="M718 250A72 72 0 1 1 862 250A72 72 0 1 1 718 250Z M740 250A50 69.5 0 1 0 840 250A50 69.5 0 1 0 740 250Z"/>
+      <path class="g5" d="M922 180H925V320H922Z M1032 180H1035V322H1032Z M922 180H947L1035 322H1010Z M908 180H947V182.5H908Z M908 317.5H940V320H908Z M1018 180H1050V182.5H1018Z"/>
+    </g>
+  </g>
+
+  <g mask="url(#wipe)">
+    <g class="solid">
+      <path class="g0" d="M168 180H190V320H168Z M154 180H204V182.5H154Z M154 317.5H204V320H154Z M190 180H228C262 180 278 196 278 217C278 238 262 254 228 254H190V251.5H225C245 251.5 255 236 255 217C255 198 245 182.5 225 182.5H190Z M214 254H236C252 290 262 312 290 318C300 320 306 318 312 313L314 315.5C306 322 296 324.5 286 323.5C256 320 238 300 214 254Z"/>
+      <path class="g1" d="M323 180H347L394 309L389 322Z M389 322L451 180H454L391.5 322Z M310 180H360V182.5H310Z M436 180H468V182.5H436Z"/>
+      <path class="g2" d="M508 180H530V320H508Z M494 180H544V182.5H494Z M494 317.5H601V320H494Z M568 320C586 315.5 595 303 597.5 283H601V320Z"/>
+      <path class="g3" d="M654 180H676V320H654Z M640 180H690V182.5H640Z M640 317.5H690V320H640Z"/>
+      <path class="g4" d="M718 250A72 72 0 1 1 862 250A72 72 0 1 1 718 250Z M740 250A50 69.5 0 1 0 840 250A50 69.5 0 1 0 740 250Z"/>
+      <path class="g5" d="M922 180H925V320H922Z M1032 180H1035V322H1032Z M922 180H947L1035 322H1010Z M908 180H947V182.5H908Z M908 317.5H940V320H908Z M1018 180H1050V182.5H1018Z"/>
+    </g>
+  </g>
+
+  <g class="sheen">
+    <path class="g0" d="M168 180H190V320H168Z M154 180H204V182.5H154Z M154 317.5H204V320H154Z M190 180H228C262 180 278 196 278 217C278 238 262 254 228 254H190V251.5H225C245 251.5 255 236 255 217C255 198 245 182.5 225 182.5H190Z M214 254H236C252 290 262 312 290 318C300 320 306 318 312 313L314 315.5C306 322 296 324.5 286 323.5C256 320 238 300 214 254Z"/>
+    <path class="g1" d="M323 180H347L394 309L389 322Z M389 322L451 180H454L391.5 322Z M310 180H360V182.5H310Z M436 180H468V182.5H436Z"/>
+    <path class="g2" d="M508 180H530V320H508Z M494 180H544V182.5H494Z M494 317.5H601V320H494Z M568 320C586 315.5 595 303 597.5 283H601V320Z"/>
+    <path class="g3" d="M654 180H676V320H654Z M640 180H690V182.5H640Z M640 317.5H690V320H640Z"/>
+    <path class="g4" d="M718 250A72 72 0 1 1 862 250A72 72 0 1 1 718 250Z M740 250A50 69.5 0 1 0 840 250A50 69.5 0 1 0 740 250Z"/>
+    <path class="g5" d="M922 180H925V320H922Z M1032 180H1035V322H1032Z M922 180H947L1035 322H1010Z M908 180H947V182.5H908Z M908 317.5H940V320H908Z M1018 180H1050V182.5H1018Z"/>
+  </g>
+
+  <g class="line">
+    <path class="g0" pathLength="1" d="M168 180H190V320H168Z M154 180H204V182.5H154Z M154 317.5H204V320H154Z M190 180H228C262 180 278 196 278 217C278 238 262 254 228 254H190V251.5H225C245 251.5 255 236 255 217C255 198 245 182.5 225 182.5H190Z M214 254H236C252 290 262 312 290 318C300 320 306 318 312 313L314 315.5C306 322 296 324.5 286 323.5C256 320 238 300 214 254Z"/>
+    <path class="g1" pathLength="1" d="M323 180H347L394 309L389 322Z M389 322L451 180H454L391.5 322Z M310 180H360V182.5H310Z M436 180H468V182.5H436Z"/>
+    <path class="g2" pathLength="1" d="M508 180H530V320H508Z M494 180H544V182.5H494Z M494 317.5H601V320H494Z M568 320C586 315.5 595 303 597.5 283H601V320Z"/>
+    <path class="g3" pathLength="1" d="M654 180H676V320H654Z M640 180H690V182.5H640Z M640 317.5H690V320H640Z"/>
+    <path class="g4" pathLength="1" d="M718 250A72 72 0 1 1 862 250A72 72 0 1 1 718 250Z M740 250A50 69.5 0 1 0 840 250A50 69.5 0 1 0 740 250Z"/>
+    <path class="g5" pathLength="1" d="M922 180H925V320H922Z M1032 180H1035V322H1032Z M922 180H947L1035 322H1010Z M908 180H947V182.5H908Z M908 317.5H940V320H908Z M1018 180H1050V182.5H1018Z"/>
+  </g>
+</svg>
